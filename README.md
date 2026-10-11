@@ -1,299 +1,137 @@
-<picture>
-  <img alt="Agent TARS Banner" src="./images/tars.png">
-</picture>
+# Doky Dory Shop
 
-<br/>
+Doky Dory ki online order site. Isme **do alag panel** hain:
 
-## Introduction
+| Panel | Kaun use karta hai | Address |
+| --- | --- | --- |
+| **Customer panel** (shop) | Customers: item chuno, outlet name daalo, payment mode chuno (UPI ya Other), PO (purchase order) PDF download | `/` |
+| **Admin panel** | Sirf aap (password se): orders, har order ka PO download, items aur prices, photos, delivery charge, Excel backup | `/admin` |
 
-English | [简体中文](./README.zh-CN.md)
+Har naya order turant **dokydoryofficial@gmail.com** par email hota hai, aur email aane se pehle hi save ho jata hai.
 
-[![](https://trendshift.io/api/badge/repositories/13584)](https://trendshift.io/repositories/13584)
-
-<b>TARS<sup>\*</sup></b> is a Multimodal AI Agent stack, currently shipping two projects: [Agent TARS](#agent-tars) and [UI-TARS-desktop](#ui-tars-desktop):
-
-<table>
-  <thead>
-    <tr>
-      <th width="50%" align="center"><a href="#agent-tars">Agent TARS</a></th>
-      <th width="50%" align="center"><a href="#ui-tars-desktop">UI-TARS-desktop</a></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="center">
-        <video src="https://github.com/user-attachments/assets/c9489936-afdc-4d12-adda-d4b90d2a869d" width="50%"></video>
-      </td>
-      <td align="center">
-        <video src="https://github.com/user-attachments/assets/e0914ce9-ad33-494b-bdec-0c25c1b01a27" width="50%"></video>
-      </td>
-    </tr>
-    <tr>
-      <td align="left">
-        <b>Agent TARS</b> is a general multimodal AI Agent stack, it brings the power of GUI Agent and Vision into your terminal, computer, browser and product.
-        <br>
-        <br>
-        It primarily ships with a <a href="https://agent-tars.com/guide/basic/cli.html" target="_blank">CLI</a> and <a href="https://agent-tars.com/guide/basic/web-ui.html" target="_blank">Web UI</a> for usage.
-        It aims to provide a workflow that is closer to human-like task completion through cutting-edge multimodal LLMs and seamless integration with various real-world <a href="https://agent-tars.com/guide/basic/mcp.html" target="_blank">MCP</a> tools.
-      </td>
-      <td align="left">
-        <b>UI-TARS Desktop</b> is a desktop application that provides a native GUI Agent based on the <a href="https://github.com/bytedance/UI-TARS" target="_blank">UI-TARS</a> model.
-        <br>
-        <br>
-        It primarily ships a
-        <a href="https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/quick-start.md#get-model-and-run-local-operator" target="_blank">local</a> and 
-        <a href="https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/quick-start.md#run-remote-operator" target="_blank">remote</a> computer as well as browser operators.
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-## Table of Contents
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [News](#news)
-- [Agent TARS](#agent-tars)
-  - [Showcase](#showcase)
-  - [Core Features](#core-features)
-  - [Quick Start](#quick-start)
-  - [Documentation](#documentation)
-- [UI-TARS Desktop](#ui-tars-desktop)
-  - [Showcase](#showcase-1)
-  - [Features](#features)
-  - [Quick Start](#quick-start-1)
-- [Contributing](#contributing)
-- [License](#license)
-- [Citation](#citation)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## News
-
-- **\[2025-11-05\]** 🎉 We're excited to announce the release of [Agent TARS CLI v0.3.0](https://github.com/bytedance/UI-TARS-desktop/releases/tag/v0.3.0)! This version brings streaming support for multiple tools (shell commands, multi-file structured display), runtime settings with timing statistics for tool calls and deep thinking, Event Stream Viewer for data flow tracking and debugging. Additionally, it features exclusive support for [AIO agent Sandbox](https://github.com/agent-infra/sandbox) as isolated all-in-one tools execution environment.
-- **\[2025-06-25\]** We released an Agent TARS Beta and Agent TARS CLI - [Introducing Agent TARS Beta](https://agent-tars.com/blog/2025-06-25-introducing-agent-tars-beta.html), a multimodal AI agent that aims to explore a work form that is closer to human-like task completion through rich multimodal capabilities (such as GUI Agent, Vision) and seamless integration with various real-world tools.
-- **\[2025-06-12\]** - 🎁 We are thrilled to announce the release of UI-TARS Desktop v0.2.0! This update introduces two powerful new features: **Remote Computer Operator** and **Remote Browser Operator**—both completely free. No configuration required: simply click to remotely control any computer or browser, and experience a new level of convenience and intelligence.
-- **\[2025-04-17\]** - 🎉 We're thrilled to announce the release of new UI-TARS Desktop application v0.1.0, featuring a redesigned Agent UI. The application enhances the computer using experience, introduces new browser operation features, and supports [the advanced UI-TARS-1.5 model](https://seed-tars.com/1.5) for improved performance and precise control.
-- **\[2025-02-20\]** - 📦 Introduced [UI TARS SDK](./docs/sdk.md), is a powerful cross-platform toolkit for building GUI automation agents.
-- **\[2025-01-23\]** - 🚀 We updated the **[Cloud Deployment](./docs/deployment.md#cloud-deployment)** section in the 中文版: [GUI模型部署教程](https://bytedance.sg.larkoffice.com/docx/TCcudYwyIox5vyxiSDLlgIsTgWf#U94rdCxzBoJMLex38NPlHL21gNb) with new information related to the ModelScope platform. You can now use the ModelScope platform for deployment.
-
-<br>
-
-## Agent TARS
-
-<p>
-    <a href="https://npmjs.com/package/@agent-tars/cli?activeTab=readme"><img src="https://img.shields.io/npm/v/@agent-tars/cli?style=for-the-badge&colorA=1a1a2e&colorB=3B82F6&logo=npm&logoColor=white" alt="npm version" /></a>
-    <a href="https://npmcharts.com/compare/@agent-tars/cli?minimal=true"><img src="https://img.shields.io/npm/dm/@agent-tars/cli.svg?style=for-the-badge&colorA=1a1a2e&colorB=0EA5E9&logo=npm&logoColor=white" alt="downloads" /></a>
-    <a href="https://nodejs.org/en/about/previous-releases"><img src="https://img.shields.io/node/v/@agent-tars/cli.svg?style=for-the-badge&colorA=1a1a2e&colorB=06B6D4&logo=node.js&logoColor=white" alt="node version"></a>
-    <a href="https://discord.gg/HnKcSBgTVx"><img src="https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Community" /></a>
-    <a href="https://twitter.com/agent_tars"><img src="https://img.shields.io/badge/Twitter-Follow%20%40agent__tars-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Official Twitter" /></a>
-    <a href="https://applink.larkoffice.com/client/chat/chatter/add_by_link?link_token=deen76f4-ea3c-4964-93a3-78f126f39651"><img src="https://img.shields.io/badge/飞书群-加入交流群-00D4AA?style=for-the-badge&logo=lark&logoColor=white" alt="飞书交流群" /></a>
-    <a href="https://deepwiki.com/bytedance/UI-TARS-desktop"><img src="https://img.shields.io/badge/DeepWiki-Ask%20AI-8B5CF6?style=for-the-badge&logo=gitbook&logoColor=white" alt="Ask DeepWiki" /></a>
-</p>
-
-<b>Agent TARS</b> is a general multimodal AI Agent stack, it brings the power of GUI Agent and Vision into your terminal, computer, browser and product. <br> <br>
-It primarily ships with a <a href="https://agent-tars.com/guide/basic/cli.html" target="_blank">CLI</a> and <a href="https://agent-tars.com/guide/basic/web-ui.html" target="_blank">Web UI</a> for usage.
-It aims to provide a workflow that is closer to human-like task completion through cutting-edge multimodal LLMs and seamless integration with various real-world <a href="https://agent-tars.com/guide/basic/mcp.html" target="_blank">MCP</a> tools.
-
-### Showcase
+## Folder mein kya hai
 
 ```
-Please help me book the earliest flight from San Jose to New York on September 1st and the last return flight on September 6th on Priceline
+doky-dory-shop/
+├── customer-panel/            CUSTOMER PANEL (shop)
+│   ├── public/index.html        shop ka page: items, cart, outlet name, payment mode, UPI QR
+│   ├── public/po-pdf.js         PO (purchase order) PDF banata hai: customer aur admin panel dono yahi use karte hain
+│   ├── public/logo*.png         logo aur icon
+│   └── routes.js                shop ka server part: price list, order save, order dhundhna
+├── admin-panel/               ADMIN PANEL (sirf aapke liye)
+│   ├── login.html               admin login page
+│   ├── admin.html               orders, items & prices, settings
+│   └── routes.js                admin ka server part: login, items, prices, photos, Excel
+├── shared/                    dono panel yeh use karte hain
+│   ├── starting-items.json      shuru ki 54 items ki list (pehli baar hi use hoti hai)
+│   ├── store.js                 orders aur items save karna
+│   ├── email.js                 order email (fail ho to har 5 minute retry)
+│   ├── catalog.js               live price list
+│   ├── config.js                settings (UPI ID, email, passwords kahan se aate hain)
+│   └── helpers.js               chhoti cheezein: phone/UTR check, Rs format
+├── server.js                  dono panel ek saath start karta hai
+├── setup.js                   computer par pehli baar password poochta hai
+├── START-SHOP-WINDOWS.bat     Windows: double-click karke shop chalao
+├── start-shop-mac.command     Mac: double-click karke shop chalao
+└── package.json, package-lock.json, Procfile, app.json    Heroku ke liye
 ```
 
-https://github.com/user-attachments/assets/772b0eef-aef7-4ab9-8cb0-9611820539d8
+Is folder mein **koi password nahi hai**. Isliye ise GitHub par daalna safe hai.
 
-<br>
+## 1. Apne computer par chalao (Windows)
 
-<table>
-  <thead>
-    <tr>
-      <th width="50%" align="center">Booking Hotel</th>
-      <th width="50%" align="center">Generate Chart with extra MCP Servers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="center">
-        <video src="https://github.com/user-attachments/assets/c9489936-afdc-4d12-adda-d4b90d2a869d" width="50%"></video>
-      </td>
-      <td align="center">
-        <video src="https://github.com/user-attachments/assets/a9fd72d0-01bb-4233-aa27-ca95194bbce9" width="50%"></video>
-      </td>
-    </tr>
-    <tr>
-      <td align="left">
-        <b>Instruction:</b> <i>I am in Los Angeles from September 1st to September 6th, with a budget of $5,000. Please help me book a Ritz-Carlton hotel closest to the airport on booking.com and compile a transportation guide for me</i>
-      </td>
-      <td align="left">
-        <b>Instruction:</b> <i>Draw me a chart of Hangzhou's weather for one month</i>
-      </td>
-    </tr>
-  </tbody>
-</table>
+1. https://nodejs.org kholo, **LTS** wala button dabao, download karke install karo (Next, Next, Finish).
+2. Zip file par right-click karo, **Extract All** dabao.
+3. `doky-dory-shop` folder kholo aur **START-SHOP-WINDOWS.bat** par double-click karo.
+   Agar Windows "Windows protected your PC" dikhaye to **More info**, phir **Run anyway** dabao.
+4. Pehli baar kuch parts download honge (internet chahiye). Phir kaali window do cheezein poochegi:
+   - **Admin panel ka password**: khud banao, kam se kam 8 letter/number. Typing ke time `*` dikhega.
+   - **Gmail App Password**: abhi nahi hai to bas Enter dabao (neeche dekho kaise banta hai).
+5. Browser mein dono panel apne aap khul jayenge:
+   - Customer panel: http://localhost:3000
+   - Admin panel: http://localhost:3000/admin
+6. Kaali window **khuli rakho**. Use band karoge to shop band ho jayegi. Agli baar bas START file dobara double-click karo.
 
-For more use cases, please check out [#842](https://github.com/bytedance/UI-TARS-desktop/issues/842).
+Mac par: `start-shop-mac.command` par right-click karke **Open** dabao. Baaki sab same.
 
-### Core Features
+**Dhyan do:** computer wala version sirf aapke computer par chalta hai (check karne aur apne use ke liye). Customers ko internet par site chahiye, uske liye step 3 (Heroku).
 
-- 🖱️ **One-Click Out-of-the-box CLI** - Supports both **headful** [Web UI](https://agent-tars.com/guide/basic/web-ui.html) and **headless** [server](https://agent-tars.com/guide/advanced/server.html) [execution](https://agent-tars.com/guide/basic/cli.html).
-- 🌐 **Hybrid Browser Agent** - Control browsers using [GUI Agent](https://agent-tars.com/guide/basic/browser.html#visual-grounding), [DOM](https://agent-tars.com/guide/basic/browser.html#dom), or a hybrid strategy.
-- 🔄 **Event Stream** - Protocol-driven Event Stream drives [Context Engineering](https://agent-tars.com/beta#context-engineering) and [Agent UI](https://agent-tars.com/blog/2025-06-25-introducing-agent-tars-beta.html#easy-to-build-applications).
-- 🧰 **MCP Integration** - The kernel is built on MCP and also supports mounting [MCP Servers](https://agent-tars.com/guide/basic/mcp.html) to connect to real-world tools.
+### Aapka data kahan save hota hai
+`C:\Users\<aapka naam>\DokyDory-data` folder mein:
+- `orders.json`: saare orders
+- `catalog.json`: items, prices, delivery charge
+- `item-photos`: aapki daali hui photos
+- `settings.txt`: aapke passwords
 
-### Quick Start
+Ye folder code ke **bahar** hai. Isliye ye galti se GitHub par nahi jayega, aur naya code aane par bhi orders aur items safe rahenge. Is folder ko kabhi upload ya share mat karna.
 
-<img alt="Agent TARS CLI" src="https://agent-tars.com/agent-tars-cli.png">
+**Password badalna:** `settings.txt` par double-click (Notepad mein khulega). `ADMIN_PASSWORD=` ke baad naya password likho, save karo. Kaali window band karke START file dobara chalao. Gmail App Password bhi yahin `GMAIL_APP_PASSWORD=` ke baad daal sakte ho.
 
-```bash
-# Launch with `npx`.
-npx @agent-tars/cli@latest
+### Gmail App Password kaise banaye (order email ke liye)
+1. **dokydoryofficial@gmail.com** se login karo.
+2. https://myaccount.google.com/security par **2-Step Verification** ON karo.
+3. https://myaccount.google.com/apppasswords kholo, naam `Doky Dory` likho, **Create** dabao.
+4. 16-letter code copy karo. Ye code kisi ko mat bhejna, chat mein bhi nahi.
 
-# Install globally, required Node.js >= 22
-npm install @agent-tars/cli@latest -g
+## 2. GitHub par upload karo
 
-# Run with your preferred model provider
-agent-tars --provider volcengine --model doubao-1-5-thinking-vision-pro-250428 --apiKey your-api-key
-agent-tars --provider anthropic --model claude-3-7-sonnet-latest --apiKey your-api-key
-```
+1. https://github.com par login karo. Upar right mein **+** dabao, phir **New repository**.
+2. Repository name: `doky-dory-shop`. **Private** chuno. **Create repository** dabao.
+3. Agle page par **uploading an existing file** link dabao.
+4. `doky-dory-shop` folder ke **andar** jao, sab kuch select karo (Ctrl+A) aur browser mein drag karke chhod do.
+   **`node_modules` folder mat daalna.** Ye computer par shop chalane se banta hai; select karte waqt ise chhod do (Ctrl dabake us par click karo).
+5. Upload poora hone do, phir neeche **Commit changes** dabao.
 
-Visit the comprehensive [Quick Start](https://agent-tars.com/guide/get-started/quick-start.html) guide for detailed setup instructions.
+## 3. Heroku par live karo (customers ke liye)
 
-### Documentation
+1. https://dashboard.heroku.com par **New**, phir **Create new app**.
+2. **Deploy** tab: Deployment method **GitHub**, connect karo, `doky-dory-shop` repo chuno, **Deploy Branch** dabao.
+3. **Resources** tab: **Heroku Postgres** add karo. Ye zaroori hai: isse orders hamesha safe rehte hain.
+4. **Settings** tab: **Reveal Config Vars** dabao aur ye do daalo (khud type karo, chat mein kabhi mat bhejna):
 
-> 🌟 **Explore Agent TARS Universe** 🌟
+| Key | Value |
+| --- | --- |
+| `GMAIL_APP_PASSWORD` | Gmail ka 16-letter App Password |
+| `ADMIN_PASSWORD` | admin panel ka password |
 
-<table>
-  <thead>
-    <tr>
-      <th width="20%" align="center">Category</th>
-      <th width="30%" align="center">Resource Link</th>
-      <th width="50%" align="left">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="center">🏠 <strong>Central Hub</strong></td>
-      <td align="center">
-        <a href="https://agent-tars.com">
-          <img src="https://img.shields.io/badge/Visit-Website-4F46E5?style=for-the-badge&logo=globe&logoColor=white" alt="Website" />
-        </a>
-      </td>
-      <td align="left">Your gateway to Agent TARS ecosystem</td>
-    </tr>
-      <tr>
-      <td align="center">📚 <strong>Quick Start</strong></td>
-      <td align="center">
-        <a href="https://agent-tars.com/guide/get-started/quick-start.html">
-          <img src="https://img.shields.io/badge/Get-Started-06B6D4?style=for-the-badge&logo=rocket&logoColor=white" alt="Quick Start" />
-        </a>
-      </td>
-      <td align="left">Zero to hero in 5 minutes</td>
-    </tr>
-    <tr>
-      <td align="center">🚀 <strong>What's New</strong></td>
-      <td align="center">
-        <a href="https://agent-tars.com/beta">
-          <img src="https://img.shields.io/badge/Read-Blog-F59E0B?style=for-the-badge&logo=rss&logoColor=white" alt="Blog" />
-        </a>
-      </td>
-      <td align="left">Discover cutting-edge features & vision</td>
-    </tr>
-    <tr>
-      <td align="center">🛠️ <strong>Developer Zone</strong></td>
-      <td align="center">
-        <a href="https://agent-tars.com/guide/get-started/introduction.html">
-          <img src="https://img.shields.io/badge/View-Docs-10B981?style=for-the-badge&logo=gitbook&logoColor=white" alt="Docs" />
-        </a>
-      </td>
-      <td align="left">Master every command & features</td>
-    </tr>
-    <tr>
-      <td align="center">🎯 <strong>Showcase</strong></td>
-      <td align="center">
-        <a href="https://github.com/bytedance/UI-TARS-desktop/issues/842">
-          <img src="https://img.shields.io/badge/View-Examples-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="Examples" />
-        </a>
-      </td>
-      <td align="left">View use cases built by the official and community</td>
-    </tr>
-    <tr>
-      <td align="center">🔧 <strong>Reference</strong></td>
-      <td align="center">
-        <a href="https://agent-tars.com/api/">
-          <img src="https://img.shields.io/badge/API-Reference-EF4444?style=for-the-badge&logo=book&logoColor=white" alt="API" />
-        </a>
-      </td>
-      <td align="left">Complete technical reference</td>
-    </tr>
-  </tbody>
-</table>
+   Chahein to: `DELIVERY_CHARGE` (shuru ka delivery charge, default 500), `UPI_ID` (default 9953791934.ibz@icici), `ORDER_EMAIL` (default dokydoryofficial@gmail.com), `SESSION_SECRET` (koi bhi lamba random text).
+5. **Open app** dabao. Customer panel `/` par aur admin panel `/admin` par milega.
+   `/healthz` kholo: `"ok": true`, `"storage": "postgres"` aur `"email": "ok"` dikhna chahiye. `"email": "failed"` aaye to App Password galat hai: naya banao aur Config Var update karo.
 
-<br/>
-<br/>
-<br/>
+Heroku free nahi hai: Basic dyno + Postgres Essential-0 milake lagbhag $10 mahina.
 
-## UI-TARS Desktop
+## 4. Admin panel kaise use kare
 
-<p align="center">
-  <img alt="UI-TARS" width="260" src="./apps/ui-tars/resources/icon.png">
-</p>
+Login 12 ghante chalta hai. 15 minute mein 10 galat password par wo device kuch der ke liye block. **Log out** se turant bahar.
 
-UI-TARS Desktop is a native GUI agent for your local computer, driven by [UI-TARS](https://github.com/bytedance/UI-TARS) and Seed-1.5-VL/1.6 series models.
+- **Orders**: har order ka outlet name, amount, payment mode (UPI ka UTR, ya Other mein customer ne kya likha), aur email gaya ya nahi (Sent / Not sent). Outlet name, phone, order no ya UTR se search. Har order ke aage **PO** button se us order ka purchase order PDF. **Download backup (Excel)** se saare orders apne computer par.
+- **Items & prices**:
+  - **Add item**: naam, category, unit, price, photo.
+  - List mein hi price badlo; Enter dabate hi save.
+  - **Show** tick hatao to item customers se chhup jata hai (jaise stock khatam). Wapas tick karo to dikhne lagega.
+  - **Edit**: naam, category, unit, price ya photo badlo.
+  - **Delete**: item hamesha ke liye hata deta hai. Chhupana zyada behtar hai.
+- **Settings**: har order ka delivery charge (jaise 500, ya free ke liye 0).
 
-<div align="center">
-<p>
-        &nbsp&nbsp 📑 <a href="https://arxiv.org/abs/2501.12326">Paper</a> &nbsp&nbsp
-        | 🤗 <a href="https://huggingface.co/ByteDance-Seed/UI-TARS-1.5-7B">Hugging Face Models</a>&nbsp&nbsp
-        | &nbsp&nbsp🫨 <a href="https://discord.gg/pTXwYVjfcs">Discord</a>&nbsp&nbsp
-        | &nbsp&nbsp🤖 <a href="https://www.modelscope.cn/collections/UI-TARS-bccb56fa1ef640">ModelScope</a>&nbsp&nbsp
-<br>
-🖥️ Desktop Application &nbsp&nbsp
-| &nbsp&nbsp 👓 <a href="https://github.com/web-infra-dev/midscene">Midscene (use in browser)</a> &nbsp&nbsp
-</p>
+Har badlav turant lagta hai: customer shop kholte ya refresh karte hi naya dekhte hain, payment se pehle checkout prices dobara check karta hai, aur server har order ko isi list se check karta hai. Purane orders apni purani price par hi rehte hain.
 
-</div>
+UPI ID aur order email sirf `settings.txt` (computer) ya Heroku Config Vars mein badalte hain, taaki admin panel se koi payment ka UPI ID na badal sake.
 
-### Showcase
+## 5. Checkout mein customer kya bharta hai
+- **Outlet name**, mobile number aur outlet ka address (zaroori); email aur GSTIN (optional).
+- **Mode of payment**:
+  - **UPI**: QR scan karke pay, phir UTR daalta hai. Aap bank app mein UTR aur amount milate ho.
+  - **Other**: customer likhta hai kaise pay karega (jaise Cash on delivery, NEFT, Cheque). Iska UTR nahi hota. Email aur admin panel mein **Other** dikhega: dispatch se pehle client se payment confirm kar lena.
+- Order ke baad customer **Download PO (PDF)** dabake purchase order le sakta hai (file ka naam `PO-<order no>.pdf`). Wahi PO aap admin panel se bhi nikal sakte ho.
 
-<!-- // FIXME: Choose only two demo, one local computer and one remote computer showcase. -->
+## 6. Orders safe kaise rehte hain
+- Har order email bhejne se **pehle** save hota hai. Email na aaye to bhi admin panel mein dikhega, aur email har 5 minute dobara try hoti hai (3 din tak).
+- Prices server par list se calculate hoti hain, customer browser se price nahi badal sakta.
+- "Place order" do baar dabane ya net jaane par bhi order double nahi banta.
+- Ek UTR sirf ek order par chalta hai.
+- Mobile number, UTR aur GSTIN save se pehle check hote hain.
+- Payment ke beech price badal gayi ho to email aur admin panel mein **Check** note aata hai, taaki aap mila sako kitna paisa aaya.
+- Customer **My orders** mein order number aur mobile number se purana order aur uska PO nikal sakta hai.
 
-|                                                          Instruction                                                           |                                                Local Operator                                                |                                               Remote Operator                                                |
-| :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
-| Please help me open the autosave feature of VS Code and delay AutoSave operations for 500 milliseconds in the VS Code setting. | <video src="https://github.com/user-attachments/assets/e0914ce9-ad33-494b-bdec-0c25c1b01a27" height="300" /> | <video src="https://github.com/user-attachments/assets/01e49b69-7070-46c8-b3e3-2aaaaec71800" height="300" /> |
-|                    Could you help me check the latest open issue of the UI-TARS-Desktop project on GitHub?                     | <video src="https://github.com/user-attachments/assets/3d159f54-d24a-4268-96c0-e149607e9199" height="300" /> | <video src="https://github.com/user-attachments/assets/072fb72d-7394-4bfa-95f5-4736e29f7e58" height="300" /> |
-
-### Features
-
-- 🤖 Natural language control powered by Vision-Language Model
-- 🖥️ Screenshot and visual recognition support
-- 🎯 Precise mouse and keyboard control
-- 💻 Cross-platform support (Windows/MacOS/Browser)
-- 🔄 Real-time feedback and status display
-- 🔐 Private and secure - fully local processing
-
-### Quick Start
-
-See [Quick Start](./docs/quick-start.md)
-
-## Contributing
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the Apache License 2.0.
-
-## Citation
-
-If you find our paper and code useful in your research, please consider giving a star :star: and citation :pencil:
-
-```BibTeX
-@article{qin2025ui,
-  title={UI-TARS: Pioneering Automated GUI Interaction with Native Agents},
-  author={Qin, Yujia and Ye, Yining and Fang, Junjie and Wang, Haoming and Liang, Shihao and Tian, Shizuo and Zhang, Junda and Li, Jiahao and Li, Yunxin and Huang, Shijue and others},
-  journal={arXiv preprint arXiv:2501.12326},
-  year={2025}
-}
-```
+## Logo
+`customer-panel/public/logo.png`, `logo@2x.png`, `logo-white.png` (PO aur email mein). Inhe badalne se logo badal jayega.
